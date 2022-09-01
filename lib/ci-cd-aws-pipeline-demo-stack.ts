@@ -9,9 +9,9 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
     super(scope, id, props);
 
     const pipeline = new CodePipeline(this, 'Pipeline', {
-      pipelineName: 'TestPipeline',
+      pipelineName: 'NanTestPipeline',
       synth: new ShellStep('Synth', {
-        input: CodePipelineSource.gitHub('beabetterdevv/ci-cd-aws-pipeline-demo', 'main'), //Remember to change 
+        input: CodePipelineSource.gitHub('nanchen1801/ci-cd-aws-pipeline-demo-new', 'main'), //Remember to change 
         commands: ['npm ci', 
                    'npm run build', 
                    'npx cdk synth']
@@ -21,7 +21,7 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
 
 
     const testingStage = pipeline.addStage(new MyPipelineAppStage(this, "test", {
-      env: { account: "755314965794", region: "us-east-1" }
+      env: { account: "273769601437", region: "us-east-1" }
     }));
 
 
@@ -29,7 +29,7 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
     testingStage.addPost(new ManualApprovalStep('Manual approval before production'));
 
     const prodStage = pipeline.addStage(new MyPipelineAppStage(this, "prod", {
-      env: { account: "755314965794", region: "us-east-1" }
+      env: { account: "273769601437", region: "us-east-1" }
     }));
   }
 }
