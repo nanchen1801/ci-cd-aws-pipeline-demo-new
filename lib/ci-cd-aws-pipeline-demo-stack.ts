@@ -17,7 +17,7 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
         input: CodePipelineSource.gitHub('nanchen1801/ci-cd-aws-pipeline-demo-new', 'main'), //Remember to change 
         commands: ['npm ci', 
                    'npm run build', 
-                   'npx cdk synth']
+                   'npx cdk synth -c config=it']
       })
     });
 
