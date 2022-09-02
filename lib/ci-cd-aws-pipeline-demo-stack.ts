@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 import { CodePipeline, CodePipelineSource, ShellStep, Step } from 'aws-cdk-lib/pipelines';
 import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
 import { MyPipelineAppStage } from './stage';
-import {BuildConfig} from "./config/build-config";
+import {BuildConfig} from "./build-config";
 import * as path from 'path';
 
 export class CiCdAwsPipelineDemoStack extends cdk.Stack {

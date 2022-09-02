@@ -2,7 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { CiCdAwsPipelineDemoStack } from '../lib/ci-cd-aws-pipeline-demo-stack';
-import {BuildConfig} from "./config/build-config";
+import {BuildConfig} from '../lib/build-config';
 const yaml = require('js-yaml');
 import * as fs from 'fs'
 import * as path from 'path';
@@ -38,10 +38,10 @@ function getConfig()
     let buildConfig: BuildConfig = {
         dev_account: ensureString(unparsedEnv, 'dev_account'),
         dev_region: ensureString(unparsedEnv, 'dev_region'),
-        prod_account: ensureString(unparsedEnv, 'AWSProfileRegion'),
-        prod_region: ensureString(unparsedEnv, 'App'),
-        stage_dev: ensureString(unparsedEnv, 'Version'),
-        stage_prod: ensureString(unparsedEnv, 'Environment'),
+        prod_account: ensureString(unparsedEnv, 'prod_account'),
+        prod_region: ensureString(unparsedEnv, 'prod_region'),
+        stage_dev: ensureString(unparsedEnv, 'stage_dev'),
+        stage_prod: ensureString(unparsedEnv, 'stage_prod'),
 
     };
 

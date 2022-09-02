@@ -27,6 +27,12 @@
     "@aws-cdk/core:target-partitions": [
       "aws",
       "aws-cn"
-    ]
+    ],
+    "it": {
+      "App": "config-1-context",
+      "Environment": "nan_dev"
+    }
   }
 }
+
+
