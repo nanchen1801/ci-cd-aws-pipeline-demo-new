@@ -16,7 +16,7 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
       selfMutation: false,
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub('nanchen1801/ci-cd-aws-pipeline-demo-new', 'main'), //Remember to change 
-        commands: ['./build.sh']
+        commands: ['/bin/bash build.sh']
       })
       
     });
