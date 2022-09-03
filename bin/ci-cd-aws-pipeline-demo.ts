@@ -34,7 +34,7 @@ function getConfig()
         throw new Error("Context variable missing on CDK command. Pass in as `-c config=XXX`");
 
     let unparsedEnv = yaml.load(fs.readFileSync(path.resolve("./config/"+country_env+".yaml"), "utf8"));
-    console.log = ("deploy country: ", unparsedEnv);
+    //console.log = ("deploy country: ", unparsedEnv);
 
     let buildConfig: BuildConfig = {
         dev_account: ensureString(unparsedEnv, 'dev_account'),
