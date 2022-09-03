@@ -33,8 +33,8 @@ export class MyLambdaStack extends cdk.Stack {
           return id + "-" + name;
       }
 
-      new Function(this, name("nan_example"), {
-        functionName: name("nan_example"),
+      new Function(this, name(buildConfig.prefix), {
+        functionName: name(buildConfig.prefix),
         runtime: Runtime.NODEJS_12_X, //using node for this, but can easily use python or other
         handler: 'handler.handler',
         code: Code.fromAsset(path.join(__dirname, 'lambda')), //resolving to ./lambda directory

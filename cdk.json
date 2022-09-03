@@ -29,8 +29,10 @@
       "aws-cn"
     ],
     "it": {
-      "App": "config-1-context",
-      "Environment": "nan_dev"
+      "Environment": "nan-it-dev"
+    },
+    "de": {
+      "Environment": "nan-de-dev"
     }
   }
 }

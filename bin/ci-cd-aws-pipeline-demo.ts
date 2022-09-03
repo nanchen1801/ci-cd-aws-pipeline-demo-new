@@ -29,11 +29,12 @@ function ensureString(object: { [name: string]: any }, propName: string ): strin
 
 function getConfig()
 {
-    let env = app.node.tryGetContext('config');
-    if (!env)
+    let country_env = app.node.tryGetContext('config');
+    if (!country_env)
         throw new Error("Context variable missing on CDK command. Pass in as `-c config=XXX`");
 
-    let unparsedEnv = yaml.load(fs.readFileSync(path.resolve("./config/"+env+".yaml"), "utf8"));
+    let unparsedEnv = yaml.load(fs.readFileSync(path.resolve("./config/"+country_env+".yaml"), "utf8"));
+    console.log = ("deploy country: ", unparsedEnv);
 
     let buildConfig: BuildConfig = {
         dev_account: ensureString(unparsedEnv, 'dev_account'),
@@ -42,6 +43,7 @@ function getConfig()
         prod_region: ensureString(unparsedEnv, 'prod_region'),
         stage_dev: ensureString(unparsedEnv, 'stage_dev'),
         stage_prod: ensureString(unparsedEnv, 'stage_prod'),
+        prefix: ensureString(unparsedEnv, 'prefix'),
 
     };
 

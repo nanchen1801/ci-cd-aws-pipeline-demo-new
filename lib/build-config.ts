@@ -8,6 +8,8 @@ export interface BuildConfig
     
     readonly stage_dev : string;
     readonly stage_prod : string;
+
+    readonly prefix : string;
  
 }
 
