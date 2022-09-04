@@ -1,5 +1,4 @@
-#!/usr/bin/env node
-import 'source-map-support/register';
+//import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { CiCdAwsPipelineDemoStack } from '../lib/ci-cd-aws-pipeline-demo-stack';
 import {BuildConfig} from '../lib/build-config';
@@ -18,7 +17,7 @@ const app = new cdk.App();
 
 //app.synth();
 
-
+// check the config items exist 
 function ensureString(object: { [name: string]: any }, propName: string ): string
 {
     if(!object[propName] || object[propName].trim().length === 0)
@@ -27,6 +26,8 @@ function ensureString(object: { [name: string]: any }, propName: string ): strin
     return object[propName];
 }
 
+
+// get config items from yaml file by config. config pass in via build.sh `-c config=XXX`
 function getConfig()
 {
     let country_env = app.node.tryGetContext('config');
@@ -34,8 +35,7 @@ function getConfig()
         throw new Error("Context variable missing on CDK command. Pass in as `-c config=XXX`");
 
     let unparsedEnv = yaml.load(fs.readFileSync(path.resolve("./config/"+country_env+".yaml"), "utf8"));
-    //console.log = ("deploy country: ", unparsedEnv);
-
+    
     let buildConfig: BuildConfig = {
         dev_account: ensureString(unparsedEnv, 'dev_account'),
         dev_region: ensureString(unparsedEnv, 'dev_region'),
@@ -55,8 +55,8 @@ async function Main()
 {
     let buildConfig: BuildConfig = getConfig();
 
-    //let mainStackName = buildConfig.App + "-" + buildConfig.Environment + "-main";
-    const mainStack = new CiCdAwsPipelineDemoStack(app, 'CiCdAwsPipelineDemoStack',
+    let mainStackName = buildConfig.prefix + "-" + buildConfig.stage_dev;
+    new CiCdAwsPipelineDemoStack(app, mainStackName,
         {
             env:
                 {
