@@ -55,8 +55,8 @@ async function Main()
 {
     let buildConfig: BuildConfig = getConfig();
 
-    let mainStackName = buildConfig.prefix + "-" + buildConfig.stage_dev;
-    new CiCdAwsPipelineDemoStack(app, mainStackName,
+    //let mainStackName = buildConfig.prefix + "-" + buildConfig.stage_dev;
+    const mainStack = new CiCdAwsPipelineDemoStack(app, 'CiCdAwsPipelineDemoStack',
         {
             env:
                 {

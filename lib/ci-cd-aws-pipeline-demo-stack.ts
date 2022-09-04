@@ -22,7 +22,7 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
     });
 
 
-    const devStage = pipeline.addStage(new MyPipelineAppStage(this, "test", buildConfig,
+    const testingStage = pipeline.addStage(new MyPipelineAppStage(this, "test", buildConfig,
       {
         env:
           {
