@@ -9,7 +9,7 @@ export class MyPipelineAppStage extends cdk.Stage {
     constructor(scope: Construct, id: string, buildConfig: BuildConfig, props?: cdk.StageProps) {
       super(scope, id, props);
   
-      const lambdaStack = new MyLambdaStack(this, (buildConfig.prefix + "nanLambdaId"), buildConfig);      
+      const lambdaStack = new MyLambdaStack(this, "lambdastack", buildConfig);      
     }
 }
 
