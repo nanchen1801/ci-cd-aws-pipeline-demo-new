@@ -6,8 +6,7 @@ import {BuildConfig} from "./build-config";
 
 export class MyPipelineAppStage extends cdk.Stage {
     
-  //passing stage
-    constructor(scope: Construct, id: string, buildConfig: BuildConfig, props?: cdk.StageProps) {
+      constructor(scope: Construct, id: string, buildConfig: BuildConfig, props?: cdk.StageProps) {
       super(scope, id, props);
   
       const lambdaStack = new MyLambdaStack(this, "LambdaStack", buildConfig);      

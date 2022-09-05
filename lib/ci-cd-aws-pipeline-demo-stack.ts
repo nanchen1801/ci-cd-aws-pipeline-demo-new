@@ -22,10 +22,10 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
     });
 
     //use wave to run stage in paralel     
-    //const wave = pipeline.addWave('wave');
+    const wave = pipeline.addWave('wave');
 
     //id is prefix + stage (nan-it-test)
-    const testStage = pipeline.addStage(new MyPipelineAppStage(this, (buildConfig.prefix + "-" + buildConfig.stage_test), buildConfig,
+    const testStage = wave.addStage(new MyPipelineAppStage(this, (buildConfig.prefix + "-" + buildConfig.stage_test), buildConfig,
       {
         env:
           {
@@ -35,7 +35,7 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
       }
     ));
 
-    const devStage = pipeline.addStage(new MyPipelineAppStage(this, (buildConfig.prefix + "-" + buildConfig.stage_dev), buildConfig,
+    const devStage = wave.addStage(new MyPipelineAppStage(this, (buildConfig.prefix + "-" + buildConfig.stage_dev), buildConfig,
     {
       env:
         {
