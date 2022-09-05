@@ -21,6 +21,9 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
       
     });
 
+    //use wave to run stage in paralel     
+    //const wave = pipeline.addWave('wave');
+
 
     const testingStage = pipeline.addStage(new MyPipelineAppStage(this, "test", buildConfig,
       {
@@ -32,6 +35,15 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
       }
     ));
 
+    const devStage = pipeline.addStage(new MyPipelineAppStage(this, (buildConfig.prefix + buildConfig.stage_dev) , buildConfig,
+    {
+      env:
+        {
+            region: buildConfig.dev_region,
+            account: buildConfig.dev_account
+        }
+    }
+  ));
 
     // devStage.addPre(new ShellStep("Run Unit Tests", { commands: ['npm install', 'npm test'] }));
     // devStage.addPost(new ManualApprovalStep('Manual approval before production'));

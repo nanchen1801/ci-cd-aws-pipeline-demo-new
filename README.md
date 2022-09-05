@@ -23,7 +23,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * 6. so only need to change build.sh to run pipeline for each env. 
 
 ## structure
-* top level app: ci-cd-aws-pipeline-demo.ts
+* app: ci-cd-aws-pipeline-demo.ts
 * pipeline stack: ci-cd-aws-pipeline-demo-stack.ts
 * stage: stage.ts
-* lambda stack: lambda-stack.ts
+* lambda stack: lambda-stack.ts 
