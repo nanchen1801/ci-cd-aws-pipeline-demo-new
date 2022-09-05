@@ -1,8 +1,9 @@
  
-prefix: "voice-de"
+prefix: "nan-de"
 dev_account: "273769601437"
 dev_region: "us-east-1"
 prod_account: "546310225738"
 prod_region: "eu-west-1"
 stage_dev: "dev"
 stage_prod: "prod"
+stage_test: "test"

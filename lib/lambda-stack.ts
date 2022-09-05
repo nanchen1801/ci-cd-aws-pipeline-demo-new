@@ -29,12 +29,12 @@ export class MyLambdaStack extends cdk.Stack {
     {
       super(scope, id, props);
 
-      function name(name: string): string {
-          return id + "-" + name;
-      }
+      // function name(name: string): string {
+      //     return id + "-" + name;
+      // }
 
-      new Function(this, name(buildConfig.prefix), {
-        functionName: name(buildConfig.prefix),
+      //id is prefix + stage (nan-it-dev)
+      new Function(this, (buildConfig.prefix + "-" + buildConfig.stage_dev), {
         runtime: Runtime.NODEJS_12_X, //using node for this, but can easily use python or other
         handler: 'handler.handler',
         code: Code.fromAsset(path.join(__dirname, 'lambda')), //resolving to ./lambda directory

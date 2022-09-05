@@ -44,6 +44,7 @@ function getConfig()
         stage_dev: ensureString(unparsedEnv, 'stage_dev'),
         stage_prod: ensureString(unparsedEnv, 'stage_prod'),
         prefix: ensureString(unparsedEnv, 'prefix'),
+        stage_test: ensureString(unparsedEnv, 'stage_test'),
 
     };
 
@@ -56,13 +57,13 @@ async function Main()
     let buildConfig: BuildConfig = getConfig();
 
     //let mainStackName = buildConfig.prefix + "-" + buildConfig.stage_dev;
-    const mainStack = new CiCdAwsPipelineDemoStack(app, 'CiCdAwsPipelineDemoStack',
+    const mainStack = new CiCdAwsPipelineDemoStack(app, 'CiCdAwsPipelineDemoStack', buildConfig,
         {
             env:
                 {
                     region: buildConfig.dev_region,
                     account: buildConfig.dev_account
                 }
-        }, buildConfig);
+        });
 }
 Main();
