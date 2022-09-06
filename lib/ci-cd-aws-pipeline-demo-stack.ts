@@ -1,10 +1,12 @@
 import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
+import { CfnOutput } from "@aws-cdk/core";
+import { Construct } from "constructs";
 import { CodePipeline, CodePipelineSource, ShellStep, Step } from 'aws-cdk-lib/pipelines';
 import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
 import { MyPipelineAppStage } from './stage';
 import {BuildConfig} from "./build-config";
 import * as path from 'path';
+import { MyLambdaStack } from './lambda-stack';
 
 export class CiCdAwsPipelineDemoStack extends cdk.Stack {
   constructor(scope: Construct, id: string, buildConfig: BuildConfig, props?: cdk.StackProps) {
@@ -34,6 +36,12 @@ export class CiCdAwsPipelineDemoStack extends cdk.Stack {
           }
       }
     ));
+
+    //adding post stage to validate the resource just deployed
+    testStage.addPost(new ShellStep("validate lambda", {
+      //envFromCfnOutputs: {myLambdaName: lambdaOutput}
+      commands: ['echo nan']
+    }));
 
     const devStage = wave.addStage(new MyPipelineAppStage(this, (buildConfig.prefix + "-" + buildConfig.stage_dev), buildConfig,
     {
